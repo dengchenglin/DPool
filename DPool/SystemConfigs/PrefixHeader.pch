@@ -1,0 +1,36 @@
+//
+//  PrefixHeader.pch
+//  DPool
+//
+//  Created by dengchenglin on 2018/9/10.
+//  Copyright © 2018年 Qianmeng. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+//基础组件
+#import "CLMacro.h"
+#import "Until.h"
+#import "YYModel.h"
+#import "NSObject+YYModels.h"
+#import "ReactiveObjC.h"
+#import "Masonry.h"
+#import "MBProgressHUD+Helper.h"
+#import "UIImageView+WebCache.h"
+#import "IQKeyboardManager.h"
+#import "NSDictionary+Category.h"
+#import "NSArray+Category.h"
+#import "UIButton+Helper.h"
+#import "NSTimer+YYAdd.h"
+#import "CLModule.h"
+
+
+//通用弱业务组件
+#import "DPMacro.h"
+#import "DPModule.h"
+#import "DPAppManager.h"
+#import "DPUserManager.h"
+#import "DPAlertView.h"
+
+#endif /* PrefixHeader_pch */
