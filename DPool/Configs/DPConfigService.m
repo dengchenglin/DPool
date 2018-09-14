@@ -16,6 +16,8 @@
 
 #import "DPWebManager.h"
 
+#import "UMShareManager.h"
+
 @implementation DPConfigService
 
 CL_EXPORT_MODULE(DPConfigServiceProtocol)
@@ -28,6 +30,8 @@ CL_EXPORT_MODULE(DPConfigServiceProtocol)
     [self checkUpdate];
     //webView配置UA
     [DPWebManager initWebUA];
+    
+    [UMShareManager config];
  
 }
 
@@ -42,6 +46,10 @@ CL_EXPORT_MODULE(DPConfigServiceProtocol)
             }];
         }
     }];
+}
+
++ (void)shareInfo:(NSDictionary *)info{
+    [UMShareManager shareInfo:info];
 }
 
 @end

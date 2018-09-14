@@ -17,5 +17,5 @@ target 'DPool' do
   pod 'UMCShare/Social/ReducedQQ'
   pod 'UMCShare/Social/ReducedSina'
   pod 'UMCPush'
-
+  pod 'YTXModule'
 end

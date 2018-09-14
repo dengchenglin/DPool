@@ -15,6 +15,7 @@
 @implementation DPTemplateChartViewModel
 
 + (DPTemplateChartViewModel *)viewModelWithModels:(NSArray <History *> *)models{
+    if(!models.count)return nil;
     DPTemplateChartViewModel *viewModel = [DPTemplateChartViewModel new];
     viewModel.itemHeight = DPTEMPLATECHART_VERTICAL_ITEM_HGIGHT;
     viewModel.itemWidth = DPTEMPLATECHART_HORIZONAL_ITEM_WIDTH;

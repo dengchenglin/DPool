@@ -11,6 +11,7 @@
 
 #import "DPNetworkEngine+Login.h"
 
+
 @interface AppDelegate ()
 
 @end
@@ -32,6 +33,9 @@
     [DPRequest loginWithEmail:@"bitfily@dpool.top" password:@"admin123" callback:^(id data, DPNetError error, NSString *msg) {
         
     }];
+    
+
+
     return YES;
 }
 
@@ -61,6 +65,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 
 @end

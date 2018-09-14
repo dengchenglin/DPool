@@ -39,6 +39,7 @@ PODS:
   - UMCShare/UI (6.9.4):
     - UMCCommon
     - UMCShare/Core
+  - YTXModule (1.2.6)
   - YYModel (1.0.4)
   - YYText (1.0.7)
 
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - UMCShare/Social/ReducedSina
   - UMCShare/Social/ReducedWeChat
   - UMCShare/UI
+  - YTXModule
   - YYModel
   - YYText
 
@@ -71,6 +73,7 @@ SPEC REPOS:
     - UMCPush
     - UMCSecurityPlugins
     - UMCShare
+    - YTXModule
     - YYModel
     - YYText
 
@@ -85,9 +88,10 @@ SPEC CHECKSUMS:
   UMCPush: 5ab89bdbcc1fe90b1c669ff79213b44dc4821ec5
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   UMCShare: aa233aecad67979930fe43f3a2f676023b669439
+  YTXModule: 7b938c73ccc1994476b927b5672edc87d9c9bd56
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 5e29cd8d94809f72a02ceceda630b4c8270ccfeb
+PODFILE CHECKSUM: 9fae77b6ba89a00a1ce04d92c71accb2e334645f
 
 COCOAPODS: 1.5.0

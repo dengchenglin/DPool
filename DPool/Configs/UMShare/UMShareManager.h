@@ -1,14 +1,15 @@
 //
-//  DPConfigServiceProtocol.h
+//  UMShareManager.h
 //  DPool
 //
-//  Created by dengchenglin on 2018/9/10.
+//  Created by dengchenglin on 2018/9/14.
 //  Copyright © 2018年 Qianmeng. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@protocol DPConfigServiceProtocol <NSObject>
+
+@interface UMShareManager : NSObject
 
 + (void)config;
 

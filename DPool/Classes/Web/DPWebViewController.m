@@ -101,7 +101,14 @@
     context[@"dpShare"] = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             @strongify(self);
-           
+            NSArray *args = [JSContext currentArguments];
+            JSValue *jsVal = [args objectAtIndex:0];
+            NSString *jsStr = [jsVal toString];
+            NSDictionary *shareData = [jsStr jsonValueDecoded];
+            dispatch_async(dispatch_get_main_queue(), ^{
+               [[DPModuleServiceManager configService] shareInfo:shareData];
+            });
+            
         });
     };
 }

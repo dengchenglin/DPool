@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3258A414214B4B7D005CE556 /* UMShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3258A413214B4B7D005CE556 /* UMShareManager.m */; };
+		3258A41C214B5957005CE556 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32CBD3B92146180200091ECF /* Info.plist */; };
 		3258E787214A8B1F00EB763C /* DPWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3258E784214A8B1F00EB763C /* DPWebService.m */; };
 		3258E788214A8B1F00EB763C /* DPWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3258E786214A8B1F00EB763C /* DPWebViewController.m */; };
 		3258E78C214A922200EB763C /* refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3258E789214A922100EB763C /* refresh@3x.png */; };
@@ -141,6 +143,8 @@
 
 /* Begin PBXFileReference section */
 		13ED7D23FFD8CF1B509C78B8 /* libPods-DPool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DPool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3258A412214B4B7D005CE556 /* UMShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMShareManager.h; sourceTree = "<group>"; };
+		3258A413214B4B7D005CE556 /* UMShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMShareManager.m; sourceTree = "<group>"; };
 		3258E781214A8A1600EB763C /* DPWebServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DPWebServiceProtocol.h; sourceTree = "<group>"; };
 		3258E783214A8B1F00EB763C /* DPWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPWebService.h; sourceTree = "<group>"; };
 		3258E784214A8B1F00EB763C /* DPWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPWebService.m; sourceTree = "<group>"; };
@@ -411,6 +415,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3258A411214B4B56005CE556 /* UMShare */ = {
+			isa = PBXGroup;
+			children = (
+				3258A412214B4B7D005CE556 /* UMShareManager.h */,
+				3258A413214B4B7D005CE556 /* UMShareManager.m */,
+			);
+			path = UMShare;
+			sourceTree = "<group>";
+		};
 		3258E782214A8B1F00EB763C /* Web */ = {
 			isa = PBXGroup;
 			children = (
@@ -548,6 +561,7 @@
 		32CBD3C42146183100091ECF /* Configs */ = {
 			isa = PBXGroup;
 			children = (
+				3258A411214B4B56005CE556 /* UMShare */,
 				32CBD50A214669F800091ECF /* DPConfigService.h */,
 				32CBD50B214669F800091ECF /* DPConfigService.m */,
 				32CBD5062146698200091ECF /* KeyboardManager */,
@@ -1276,6 +1290,7 @@
 				32A79EC62148EFC600404F80 /* DPImmediateView.xib in Resources */,
 				3258E78E214A922200EB763C /* refresh@2x.png in Resources */,
 				32A79EE0214912F400404F80 /* template_bg.png in Resources */,
+				3258A41C214B5957005CE556 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1398,6 +1413,7 @@
 				32C79C52214A736D00BEAB2B /* DPChartSelectView.m in Sources */,
 				32CBD4FD2146628100091ECF /* DPDoneButton.m in Sources */,
 				32AED4AD2147656C00E0AAFD /* DPRegisterViewModel.m in Sources */,
+				3258A414214B4B7D005CE556 /* UMShareManager.m in Sources */,
 				32CBD5092146699A00091ECF /* KeyboardManager.m in Sources */,
 				328502472147B3E900F9B298 /* DPHelpCell.m in Sources */,
 				32CBD438214619BD00091ECF /* UIButton+Create.m in Sources */,
@@ -1561,6 +1577,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9ZJ3RLKNS9;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DPool/SystemConfigs/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/DPool/SystemConfigs/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1582,6 +1599,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9ZJ3RLKNS9;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DPool/SystemConfigs/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/DPool/SystemConfigs/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

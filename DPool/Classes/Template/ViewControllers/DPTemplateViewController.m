@@ -156,4 +156,6 @@
     self.templateChart.d_viewModel = [DPTemplateChartViewModel viewModelWithModels:self.model.history_d];
     [self.templateChart reloadView];
 }
+
+
 @end

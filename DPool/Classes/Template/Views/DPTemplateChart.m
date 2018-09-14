@@ -59,14 +59,15 @@
 }
 
 - (void)reloadView{
+   
     for(UIView * view in self.subviews){
         if(![view isKindOfClass:[DPChartSelectView class]]){
             [view removeFromSuperview];
         }
     }
 
-
-       CGFloat titleWidth = [self viewModel].titleMaxWidth;
+  if(![self viewModel]) return;
+    CGFloat titleWidth = [self viewModel].titleMaxWidth;
     UIColor *lineColor = RGBColor(150, 150, 150);
     CALayer *line = [CALayer layer];
     [line setFrame:CGRectMake(50 , 20, 1, self.height - 60)];
