@@ -23,7 +23,7 @@
 SINGLETON_FOR_CLASS_IMP(DPAppManager)
 
 + (BOOL)logined{
-    return [DPAppManager sharedInstance].loginToken?YES:NO;
+    return [DPUserManager sharedInstance].cuid?YES:NO;
 }
 
 + (void)logout{
@@ -52,7 +52,7 @@ SINGLETON_FOR_CLASS_IMP(DPAppManager)
 {
     self = [super init];
     if (self) {
-        _loginToken = [KeychainTool load:DP_LOGIN_TOKEN];
+        _loginToken = [[NSUserDefaults standardUserDefaults] objectForKey:DP_LOGIN_TOKEN];
         _authOverTime = [KeychainTool load:DP_AUTH_OVER_TIME];
     }
     return self;
@@ -60,7 +60,7 @@ SINGLETON_FOR_CLASS_IMP(DPAppManager)
 
 - (void)setLoginToken:(NSString *)loginToken{
     _loginToken = loginToken;
-    [KeychainTool save:DP_LOGIN_TOKEN data:_loginToken];
+    [[NSUserDefaults standardUserDefaults] setValue:_loginToken forKey:DP_LOGIN_TOKEN];
 }
 
 - (void)setAuthOverTime:(NSString *)authOverTime{

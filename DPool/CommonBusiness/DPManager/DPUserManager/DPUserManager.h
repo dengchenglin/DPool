@@ -8,13 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DPUser.h"
-
 @interface DPUserManager : NSObject
 
 SINGLETON_FOR_CLASS_DEF(DPUserManager)
 
-@property (nonatomic, strong) DPUser *user;
+@property (nonatomic, strong) NSString *cuid;
 
 + (void)registerUserWithInfo:(id)info;
 

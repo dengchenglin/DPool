@@ -55,6 +55,18 @@
             [DPAlertView showErrorViewWithTitle:@"请输入邮箱"];
             return ;
         }
+        if(!self.viewModel.password.length){
+            [DPAlertView showErrorViewWithTitle:@"请输入密码"];
+            return ;
+        }
+        if(!self.viewModel.rpwd.length){
+            [DPAlertView showErrorViewWithTitle:@"请输入确认密码"];
+            return ;
+        }
+        if(![self.viewModel.password isEqualToString:self.viewModel.rpwd]){
+            [DPAlertView showErrorViewWithTitle:@"两次输入密码不一致"];
+            return ;
+        }
         [DPRequest sendEmailWithEmail:self.viewModel.email type:SendEmailRegister callback:^(id data, DPNetError error, NSString *msg) {
             if(!error){
                 [self.registerView.sendCodeBtn startTimer];
@@ -78,6 +90,11 @@
             [DPAlertView showErrorViewWithTitle:@"请输入确认密码"];
             return ;
         }
+        if(![self.viewModel.password isEqualToString:self.viewModel.rpwd]){
+            [DPAlertView showErrorViewWithTitle:@"两次输入密码不一致"];
+            return ;
+        }
+     
         if(!self.viewModel.code.length){
             [DPAlertView showErrorViewWithTitle:@"请输入验证码"];
             return ;

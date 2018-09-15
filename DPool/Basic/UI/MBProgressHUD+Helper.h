@@ -14,5 +14,7 @@
 
 + (void)showMBProgressHudWithTitle:(NSString *)title hideAfterDelay:(NSTimeInterval)hideAfterDelay;
 
++ (void)hideAllMBProgressHudOnView:(UIView *)view;
+
 
 @end

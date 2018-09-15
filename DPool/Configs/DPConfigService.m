@@ -29,7 +29,8 @@ CL_EXPORT_MODULE(DPConfigServiceProtocol)
     //检测是否更新
     [self checkUpdate];
     //webView配置UA
-    [DPWebManager initWebUA];
+     [DPWebManager initWebUA];
+    
     
     [UMShareManager config];
  
@@ -38,11 +39,18 @@ CL_EXPORT_MODULE(DPConfigServiceProtocol)
 //检测更新
 + (void)checkUpdate{
     [DPRequest upgradeWithCallback:^(id data, DPNetError error, NSString *msg) {
-        NSNumber *number = data[@"isupdate"];
-        if(number.boolValue == 1){
+        NSNumber *isupdate = data[@"isupdate"];
+        NSNumber *force = data[@"force"];
+        if(isupdate.boolValue){
             [DPAlertView showNoticeViewWithTitle:data[@"title"] didClick:^(NSUInteger index) {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:data[@"url"]]];
-             
+                if(index == 1){
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:data[@"url"]]];
+                }
+                else{
+                    if(force.boolValue){
+                        exit(0);
+                    }
+                }
             }];
         }
     }];

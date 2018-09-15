@@ -99,13 +99,21 @@
     }];
 }
 
+- (void)setUpEvent{
+    @weakify(self)
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:DP_NOTIFITION_LOGIN object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+        @strongify(self)
+        [self request];
+    }];
+}
+
 - (void)layout{
     [self.immediateView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(0);
         make.height.mas_equalTo(130);
     }];
     
-    [self.templateChart setFrame:CGRectMake(10, 140, SCREEN_WIDTH - 10, DPTEMPLATECHART_VERTICAL_HGIGHT + 50)];
+    [self.templateChart setFrame:CGRectMake(10, 140, SCREEN_WIDTH - 10, DPTEMPLATECHART_VERTICAL_HGIGHT)];
     
     [self.templateUnitView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
@@ -138,7 +146,7 @@
 }
 
 - (void)request{
-    [DPRequest userInfoWithPuid:[DPUserManager sharedInstance].user.cuid callback:^(id data, DPNetError error, NSString *msg) {
+    [DPRequest userInfoWithPuid:[DPUserManager sharedInstance].cuid callback:^(id data, DPNetError error, NSString *msg) {
         [self.scrollView endRefreshing];
         [self reloadData:data];
     }];

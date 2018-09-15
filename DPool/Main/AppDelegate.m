@@ -28,12 +28,6 @@
     
     [[DPModuleServiceManager configService] config];
 
-    
-    
-    [DPRequest loginWithEmail:@"bitfily@dpool.top" password:@"admin123" callback:^(id data, DPNetError error, NSString *msg) {
-        
-    }];
-    
 
 
     return YES;

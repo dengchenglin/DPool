@@ -14,7 +14,7 @@
 
 #define DPTEMPLATECHART_VERTICAL_LEVEL       5
 
-#define DPTEMPLATECHART_VERTICAL_HGIGHT      200.0
+#define DPTEMPLATECHART_VERTICAL_HGIGHT      250.0
 
 #define DPTEMPLATECHART_VERTICAL_ITEM_HGIGHT 32
 
@@ -44,6 +44,8 @@
 @property (nonatomic, assign) CGFloat itemHeight;
 
 @property (nonatomic, assign) CGFloat titleMaxWidth;
+
+@property (nonatomic, assign) CGFloat verticalMaxheight;
 
 + (DPTemplateChartViewModel *)viewModelWithModels:(NSArray <History *> *)models;
 

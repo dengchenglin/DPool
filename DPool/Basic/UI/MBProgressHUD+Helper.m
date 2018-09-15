@@ -41,5 +41,12 @@
     [hud hideAnimated:YES afterDelay:hideAfterDelay];
 }
 
++ (void)hideAllMBProgressHudOnView:(UIView *)view{
+    for(UIView * v in view.subviews){
+        if([v isKindOfClass:[MBProgressHUD class]]){
+            [v removeFromSuperview];
+        }
+    }
+}
 
 @end

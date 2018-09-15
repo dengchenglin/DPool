@@ -51,6 +51,18 @@
             [DPAlertView showErrorViewWithTitle:@"请输入邮箱"];
             return ;
         }
+        if(!self.viewModel.password.length){
+            [DPAlertView showErrorViewWithTitle:@"请输入密码"];
+            return ;
+        }
+        if(!self.viewModel.rpwd.length){
+            [DPAlertView showErrorViewWithTitle:@"请输入确认密码"];
+            return ;
+        }
+        if(![self.viewModel.password isEqualToString:self.viewModel.rpwd]){
+            [DPAlertView showErrorViewWithTitle:@"两次输入密码不一致"];
+            return ;
+        }
         [DPRequest sendEmailWithEmail:self.viewModel.email type:SendEmailForget callback:^(id data, DPNetError error, NSString *msg) {
             if(!error){
                 [self.passwordView.sendCodeBtn startTimer];
@@ -73,6 +85,18 @@
             [DPAlertView showErrorViewWithTitle:@"请输入确认密码"];
             return ;
         }
+        if(!self.viewModel.password.length){
+            [DPAlertView showErrorViewWithTitle:@"请输入密码"];
+            return ;
+        }
+        if(!self.viewModel.rpwd.length){
+            [DPAlertView showErrorViewWithTitle:@"请输入确认密码"];
+            return ;
+        }
+        if(![self.viewModel.password isEqualToString:self.viewModel.rpwd]){
+            [DPAlertView showErrorViewWithTitle:@"两次输入密码不一致"];
+            return ;
+        }
         if(!self.viewModel.code.length){
             [DPAlertView showErrorViewWithTitle:@"请输入验证码"];
             return ;
@@ -80,25 +104,13 @@
         [DPRequest resetWithEmail:self.viewModel.email password:self.viewModel.password rpwd:self.viewModel.rpwd code:self.viewModel.code callback:^(id data, DPNetError error, NSString *msg) {
             if(!error){
                 [MBProgressHUD showMBProgressHudWithTitle:msg hideAfterDelay:1.0];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }];
         
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

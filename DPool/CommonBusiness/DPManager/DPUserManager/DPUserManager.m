@@ -10,34 +10,37 @@
 
 #import "DPAppManager.h"
 
+#define DP_USER_INFO  @"DP_USER_INFO"
+
 @implementation DPUserManager
 
 SINGLETON_FOR_CLASS_IMP(DPUserManager)
 
 + (void)registerUserWithInfo:(NSDictionary *)info{
-    if(!info)return;
-    DPUser *user = [DPUser yy_modelWithDictionary:info];
-    [DPUserManager sharedInstance].user = user;
-    [info writeToFile:[self userPath] atomically:YES];
+    if(!info[@"cuid"])return;
+    [DPUserManager sharedInstance].cuid = info[@"cuid"];
+    
+    [[NSUserDefaults standardUserDefaults]setValue:[DPUserManager sharedInstance].cuid forKey:DP_USER_INFO];
+
+    
 }
+
+
 
 + (void)logoutUser{
-    [DPUserManager sharedInstance].user = nil;
-    [[NSFileManager defaultManager] removeItemAtPath:[self userPath] error:nil];
+    [DPUserManager sharedInstance].cuid = nil;
+    [[NSUserDefaults standardUserDefaults]setValue:nil forKey:DP_USER_INFO];
 }
 
 
-+ (NSString *)userPath{
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    return [path stringByAppendingPathComponent:@"dp_user.plist"];
-}
+
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        NSDictionary *info = [[NSDictionary alloc]initWithContentsOfFile:[self.class userPath]];
-         [self.class registerUserWithInfo:info];
+        _cuid = [[NSUserDefaults standardUserDefaults] objectForKey:DP_USER_INFO];
+   
     }
     return self;
 }

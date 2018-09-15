@@ -10,9 +10,15 @@
 
 #import <JavaScriptCore/JavaScriptCore.h>
 
+#import "UIScrollView+CLRefresh.h"
+
+#import "NSTimer+YYAdd.h"
+
 @interface DPWebViewController ()<UIWebViewDelegate>
 
 @property (nonatomic, strong)UIWebView *webView;
+
+@property (nonatomic, copy)NSString *n_url;
 
 @end
 
@@ -65,17 +71,32 @@
             [self.webView reload];
         }];
     }
+    @weakify(self)
+    [self.webView.scrollView addHeaderRefreshWithCallBack:^{
+        @strongify(self)
+        [self request];
+    }];
 
+    self.n_url = [self.url urlAddCompnentForValue:[DPUserManager sharedInstance].cuid key:@"cuid"];
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:DP_NOTIFITION_LOGIN object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+        if([DPAppManager logined]){
+            self.n_url = [self.url urlAddCompnentForValue:[DPUserManager sharedInstance].cuid key:@"cuid"];
+           
+        }
+    }];
+    
 }
-
 
 - (void)login{
     [DPModuleManager showLoginFromViewController:self callback:nil];
 }
 
 - (void)request{
-    [MBProgressHUD showMBProgressHudOnView:self.view];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.2 block:^(NSTimer *timer) {
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.n_url]]];
+    } repeats:NO];
+
 }
 
 - (void)back{
@@ -91,7 +112,7 @@
 #pragma makr - UIWebViewDelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
+    [self.webView.scrollView endRefreshing];
     //设置标题
     self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     
@@ -114,7 +135,10 @@
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self.webView.scrollView endRefreshing];
 }
+
+
 
 
 

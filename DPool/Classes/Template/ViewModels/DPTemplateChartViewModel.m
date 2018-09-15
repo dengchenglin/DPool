@@ -19,6 +19,7 @@
     DPTemplateChartViewModel *viewModel = [DPTemplateChartViewModel new];
     viewModel.itemHeight = DPTEMPLATECHART_VERTICAL_ITEM_HGIGHT;
     viewModel.itemWidth = DPTEMPLATECHART_HORIZONAL_ITEM_WIDTH;
+    viewModel.verticalMaxheight = DPTEMPLATECHART_VERTICAL_ITEM_HGIGHT * DPTEMPLATECHART_VERTICAL_LEVEL;
     if(DPTEMPLATECHART_HORIZONAL_ITEM_WIDTH * models.count < DPTEMPLATECHART_HORIZONAL_MAX_WIDTH){
         viewModel.itemWidth = DPTEMPLATECHART_HORIZONAL_MAX_WIDTH/models.count;
     }
@@ -64,13 +65,12 @@
     
     [horizontals enumerateObjectsUsingBlock:^(HorizontalInfo * obj, NSUInteger idx, BOOL * _Nonnull stop) {
         CGFloat x = idx * viewModel.itemWidth;
-        CGFloat y = DPTEMPLATECHART_VERTICAL_HGIGHT * (obj.share.floatValue/maxShare);
+        CGFloat y = DPTEMPLATECHART_VERTICAL_ITEM_HGIGHT *  DPTEMPLATECHART_VERTICAL_LEVEL* (obj.share.floatValue/maxShare);
         obj.point = CGPointMake(x, y);
     }];
     
     viewModel.horizontals = horizontals;
-    
-    viewModel.contentSize = CGSizeMake(viewModel.itemWidth * models.count, DPTEMPLATECHART_VERTICAL_HGIGHT);
+    viewModel.contentSize = CGSizeMake(viewModel.itemWidth * models.count, DPTEMPLATECHART_VERTICAL_ITEM_HGIGHT *  DPTEMPLATECHART_VERTICAL_LEVEL);
     
     return viewModel;
 }

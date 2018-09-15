@@ -33,5 +33,9 @@
  * 邮箱格式验证
  */
 - (BOOL)validateEmail;
+/**
+ * url拼接参数
+ */
+- (NSString *)urlAddCompnentForValue:(NSString *)value key:(NSString *)key;
 
 @end

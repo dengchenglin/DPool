@@ -108,14 +108,19 @@
 
 - (void)setLeftDefaultItem{
     UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backBtn setFrame:CGRectMake(0, 0, 60, 20)];
-    [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [backBtn setFrame:CGRectMake(0, 0, 40, 30)];
+//    [backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [backBtn setTitle:@"返回" forState:UIControlStateNormal];
     [backBtn setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    backBtn.titleLabel.font = FONT_PFRG_SIZE(17);
+    backBtn.titleLabel.font = FONT_PFRG_SIZE(15);
     UIBarButtonItem * item =[[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem = item;
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    if(IOS_11){
+        [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(backBtn.size);
+        }];
+    }
 }
 
 - (void)setRightButtonWithImageName:(NSString *)imageName selector:(SEL)selector{

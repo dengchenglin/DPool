@@ -37,7 +37,7 @@
     self.codeTfd = ({
         DPLoginTextField *codeTfd= [[DPLoginTextField alloc]init];
         codeTfd.placeholder = @"请输入验证码";
-        codeTfd.secureTextEntry = YES;
+     
         [self addSubview:codeTfd];
         codeTfd;
     });
