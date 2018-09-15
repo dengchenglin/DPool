@@ -29,6 +29,7 @@ SINGLETON_FOR_CLASS_IMP(DPAppManager)
 + (void)logout{
     [KeychainTool delete:DP_LOGIN_TOKEN];
     [DPAppManager sharedInstance].loginToken = nil;
+    [DPAppManager sharedInstance].account = nil;
     [DPUserManager logoutUser] ;
  
 }

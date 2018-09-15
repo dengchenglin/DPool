@@ -14,6 +14,8 @@ SINGLETON_FOR_CLASS_DEF(DPAppManager)
 
 @property (nonatomic, copy) NSString *loginToken;
 
+@property (nonatomic, copy) NSString *account;
+
 @property (nonatomic, copy) NSString *authOverTime;//授权token超时时间
 
 @property (nonatomic, assign) BOOL logined; //app登录状态

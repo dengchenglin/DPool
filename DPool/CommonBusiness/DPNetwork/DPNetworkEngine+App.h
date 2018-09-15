@@ -16,4 +16,5 @@
 
 - (void)userInfoWithPuid:(NSString *)puid callback:(DPResponseBlock)callback;
 
+- (void)switchInfoWithCallback:(DPResponseBlock)callback;
 @end

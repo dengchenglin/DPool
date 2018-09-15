@@ -14,6 +14,8 @@
 
 #define PATH_APPS_USERINFO           DP_API_APPS_PATH(userinfo)
 
+#define PATH_APPS_SWITCH_INFO           DP_API_APPS_PATH(switchinfo)
+
 @implementation DPNetworkEngine (App)
 
 - (void)tabbarInfoWithCallback:(DPResponseBlock)callback{
@@ -27,7 +29,12 @@
 - (void)userInfoWithPuid:(NSString *)puid callback:(DPResponseBlock)callback{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:puid forKey:@"puid"];
+    [params setValue:@"www.dpool" forKey:@"channel"];
     [self postWithPath:PATH_APPS_USERINFO params:params callback:callback];
+}
+
+- (void)switchInfoWithCallback:(DPResponseBlock)callback{
+       [self postWithPath:PATH_APPS_SWITCH_INFO params:nil callback:callback];
 }
 
 @end

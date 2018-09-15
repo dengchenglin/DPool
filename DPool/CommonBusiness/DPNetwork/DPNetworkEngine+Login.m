@@ -50,6 +50,7 @@ NSString *GetSendEmailStrForType(SendEmailType type){
     [self postWithPath:PATH_POOL_LOGIN params:params callback:^(id data, DPNetError error, NSString *msg) {
         if(!error){
             [DPAppManager sharedInstance].loginToken = data[@"login_token"];
+            [DPAppManager sharedInstance].account = data[@"account"];
             [DPUserManager registerUserWithInfo:data[@"first_sub"]];
         }
         if(callback){

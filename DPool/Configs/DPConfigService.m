@@ -18,11 +18,14 @@
 
 #import "UMShareManager.h"
 
+#import "DPWebViewController.h"
+
 @implementation DPConfigService
 
 CL_EXPORT_MODULE(DPConfigServiceProtocol)
 
 + (void)config{
+    [self configKeyWindow];
     [KeyboardManager config];
     //授权token 接口会自动缓存
     [DPRequest authWithCallback:nil];
@@ -58,6 +61,45 @@ CL_EXPORT_MODULE(DPConfigServiceProtocol)
 
 + (void)shareInfo:(NSDictionary *)info{
     [UMShareManager shareInfo:info];
+}
+
+
++ (void)configKeyWindow{
+
+    NSNumber *is_use_html5 = [[NSUserDefaults standardUserDefaults]objectForKey:@"dp_use_html"];
+    NSString *web_url = [[NSUserDefaults standardUserDefaults]objectForKey:@"dp_web_url"];
+    if(is_use_html5.boolValue){
+        [self configWebWindowWithUrl:web_url];
+    }
+    else{
+        [self configMainWindow];
+    }
+    [DPRequest switchInfoWithCallback:^(id data, DPNetError error, NSString *msg) {
+        NSNumber *is_use_html5 = data[@"is_use_html5"];
+        NSString *web_url = data[@"web_url"];
+        [[NSUserDefaults standardUserDefaults]setObject:is_use_html5 forKey:@"dp_use_html"];
+        [[NSUserDefaults standardUserDefaults]setObject:web_url forKey:@"dp_web_url"];
+        UIViewController *rootVc = [UIApplication sharedApplication].keyWindow.rootViewController;
+        if(is_use_html5.boolValue){
+            if(![rootVc isKindOfClass:[DPWebViewController class]]){
+                [self configWebWindowWithUrl:web_url];
+            }
+        }
+        else{
+            if(![rootVc isKindOfClass:[UITabBarController class]]){
+                [self configMainWindow];
+            }
+        }
+    }];
+}
+
++ (void)configWebWindowWithUrl:(NSString *)url{
+    Class<DPWebServiceProtocol> webService = ( Class<DPWebServiceProtocol>)[DPModuleServiceManager serviceForStr:@"dp_web"];
+    UIViewController *rootVc = [webService webViewControllerWithUrl:url title:nil];
+    [UIApplication sharedApplication].keyWindow.rootViewController = rootVc;
+}
++ (void)configMainWindow{
+    [UIApplication sharedApplication].keyWindow.rootViewController = [[DPModuleServiceManager mainService] rootViewController];
 }
 
 @end

@@ -23,7 +23,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>QQ41E97DA9</string>
+				<string>wb3921700954</string>
 			</array>
 		</dict>
 		<dict>
@@ -32,6 +32,14 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>tencent1105821097</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>QQ41E97DA9</string>
 			</array>
 		</dict>
 		<dict>
@@ -101,6 +109,10 @@
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App需要您的同意,才能访问相册</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
