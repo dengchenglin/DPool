@@ -60,6 +60,9 @@
     }else{
         result = nextResponder;
     }
+    if(![result isKindOfClass:[UIViewController class]]){
+        return nil;
+    }
     return result;
 }
 

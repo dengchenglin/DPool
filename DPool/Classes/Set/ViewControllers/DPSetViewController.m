@@ -96,12 +96,7 @@
     [cell.imageView setBounds:CGRectMake(0, 0, 60, 60)];
     cell.imgView.image = [UIImage imageNamed:data[@"img"]];
     cell.isPush = (indexPath.section == 0 && indexPath.row == 3);
-//    if(indexPath.section == 0 && indexPath.row == 1){
-//        cell.rightLabel.text = [NSString stringWithFormat:@"%.2fM",[[SDImageCache sharedImageCache]getSize]/(1024.0 * 1024.0)];
-//    }
-//    else{
-//        cell.rightLabel.text = nil;
-//    }
+
     if(indexPath.section == 0 && (indexPath.row == 1 || indexPath.row == 3)){
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
@@ -120,6 +115,12 @@
             [FileUtil clearWebCaches];
 
             [MBProgressHUD showMBProgressHudWithTitle:@"清理完成" hideAfterDelay:1.0];
+            [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:NO block:^(NSTimer * _Nonnull timer) {
+                if([DPAppManager logined]){
+                    [self logout];
+                }
+               
+            }];
 
         }
         if(indexPath.row == 2){

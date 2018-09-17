@@ -38,9 +38,9 @@
 
 - (NSArray *)tabbar_plist{
     NSArray *arr = [[NSArray alloc]initWithContentsOfFile:[self mainPath]];
-    return arr?: @[@{@"unchecked":@"home_normal",@"selected":@"home_selected",@"name":@"首页",@"service":@"dp_home"},
-                   @{@"unchecked":@"template_normal",@"selected":@"template_selected",@"name":@"控制面板",@"service":@"dp_template",@"is_need_login":@"1"},
-                   @{@"unchecked":@"earning_normal",@"selected":@"earning_selected",@"name":@"收益",@"service":@"dp_web",@"web_url":@"https://m-functest.qubtc.com/income",@"is_need_login":@"1"}, @{@"unchecked":@"set_normal",@"selected":@"set_selected",@"name":@"设置",@"service":@"dp_set"}];
+    return arr?: @[@{@"unchecked":@"home_normal",@"selected":@"home_selected",@"name":@"首页",@"model":@"dp_home"},
+                   @{@"unchecked":@"template_normal",@"selected":@"template_selected",@"name":@"控制面板",@"model":@"dp_template",@"is_need_login":@"1"},
+                   @{@"unchecked":@"earning_normal",@"selected":@"earning_selected",@"name":@"收益",@"model":@"dp_income",@"web_url":@"https://m-functest.qubtc.com/income",@"is_need_login":@"1"}, @{@"unchecked":@"set_normal",@"selected":@"set_selected",@"name":@"设置",@"model":@"dp_set"}];
 //    @{@"unchecked":@"subaccount_normal",@"selected":@"subaccount_selected",@"name":@"子账户",@"service":@"dp_web",@"web_url":@"https://m-functest.qubtc.com/subaccount",@"is_need_login":@"1"},
     
 }

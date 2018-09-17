@@ -11,7 +11,7 @@
 @implementation DPTabBarModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"tabbar_normal_image" : @"unchecked",@"tabbar_selected_image":@"selected",@"title":@"name",@"service":@"type"};
+    return @{@"tabbar_normal_image" : @"unchecked",@"tabbar_selected_image":@"selected",@"title":@"name",@"service":@"model"};
 }
 
 - (NSString *)service{

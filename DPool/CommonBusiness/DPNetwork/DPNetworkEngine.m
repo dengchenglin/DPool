@@ -100,7 +100,7 @@ static int request_vc_key;
     });
     [request start];
     UIViewController *currentVC = [UIUtil getCurrentViewController];
-    if(showHud){
+    if(showHud && currentVC){
         [MBProgressHUD showMBProgressHudOnView:currentVC.view];
     }
     objc_setAssociatedObject(request, &request_vc_key, currentVC, OBJC_ASSOCIATION_RETAIN_NONATOMIC);

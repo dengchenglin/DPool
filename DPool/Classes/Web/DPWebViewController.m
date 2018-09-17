@@ -93,7 +93,7 @@
     self.n_url = [self.url urlAddCompnentForValue:[DPUserManager sharedInstance].cuid key:@"cuid"];
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:DP_NOTIFITION_LOGIN object:nil] subscribeNext:^(NSNotification * _Nullable x) {
         if([DPAppManager logined]){
-            self.n_url = [self.url urlAddCompnentForValue:[DPAppManager sharedInstance].account key:@"account"];
+            self.n_url = [self.url urlAddCompnentForValue:[DPAppManager sharedInstance].email key:@"account"];
             [self request];
         }
     }];
