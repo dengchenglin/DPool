@@ -16,6 +16,8 @@
 
 + (void)showOKViewWithTitle:(NSString *)title;
 
++ (void)showUpdateViewWithTitle:(NSString *)title didClick:(void(^)(NSUInteger index))didClick;
+
 + (void)showNoticeViewWithTitle:(NSString *)title didClick:(void(^)(NSUInteger index))didClick;
 
 + (void)showOptionalAlertViewWithLogoName:(NSString *)logoName title:(NSString *)title didClick:(void(^)(NSUInteger index))didClick;

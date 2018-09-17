@@ -17,9 +17,9 @@
 
 - (void)setModel:(DPTemplateModel *)model{
     _model = model;
-    _calculate_15_label.text = [NSString stringWithFormat:@"%@TH/S",_model.stats.shares_15m];
-    _calculate_1_label.text = [NSString stringWithFormat:@"%@TH/S",_model.stats.shares_1h];
-    _calculate_24_label.text = [NSString stringWithFormat:@"%@TH/S",_model.stats.shares_24h];
+    _calculate_15_label.text = [NSString stringWithFormat:@"%@ TH/S",[NSString stringWithFormat:@"%.2f",_model.stats.shares_15m.floatValue]];
+    _calculate_1_label.text = [NSString stringWithFormat:@"%@ TH/S",[NSString stringWithFormat:@"%.2f",_model.stats.shares_1h.floatValue]];
+    _calculate_24_label.text = [NSString stringWithFormat:@"%@ TH/S",[NSString stringWithFormat:@"%.2f",_model.stats.shares_24h.floatValue]];
 }
 
 @end

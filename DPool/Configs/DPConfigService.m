@@ -49,7 +49,7 @@ CL_EXPORT_MODULE(DPConfigServiceProtocol)
         NSNumber *isupdate = data[@"isupdate"];
         NSNumber *force = data[@"force"];
         if(isupdate.boolValue){
-            [DPAlertView showNoticeViewWithTitle:data[@"title"] didClick:^(NSUInteger index) {
+            [DPAlertView showUpdateViewWithTitle:data[@"title"] didClick:^(NSUInteger index) {
                 if(index == 1){
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:data[@"url"]]];
                 }

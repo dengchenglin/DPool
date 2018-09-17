@@ -17,7 +17,7 @@
 
 - (void)setModel:(DPTemplateModel *)model{
     _model = model;
-    _immediateLabel.text = [NSString stringWithFormat:@"%@ TH/S",_model.stats.shares_15m];
+    _immediateLabel.text = [NSString stringWithFormat:@"%@ TH/S",[NSString stringWithFormat:@"%.2f",_model.stats.shares_15m.floatValue]];
     _yesterdayLabel.text = _model.payment.yesterdayearn;
     _vaildLabel.text = _model.stats.workers_active;
     _totalLabel.text = _model.payment.total_earn;

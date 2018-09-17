@@ -86,7 +86,7 @@
     return [self.tabbar_models map:^id(NSInteger index, DPTabBarModel* element) {
         Class<CLModuleServiceProtocol> service = [DPModuleServiceManager serviceForStr:element.service];
   
-        if(element.web_url.length){
+        if(element.web_url.length || [element.service isEqualToString:@"dp_web"]){
             Class<DPWebServiceProtocol> webService = ( Class<DPWebServiceProtocol>)[DPModuleServiceManager serviceForStr:element.service];
             UIViewController *rootVc = [webService webViewControllerWithUrl:element.web_url title:element.title];
             rootVc.title = element.title;

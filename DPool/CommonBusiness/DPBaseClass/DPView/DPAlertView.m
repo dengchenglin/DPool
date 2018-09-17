@@ -127,6 +127,12 @@
     [[UIApplication sharedApplication].keyWindow addSubview:alertView];
 }
 
++ (void)showUpdateViewWithTitle:(NSString *)title didClick:(void(^)(NSUInteger index))didClick{
+    DPAlertView *alertView = [[DPAlertView alloc]initWithLogoName:@"error" content:title cancelTitle:nil doneTitle:@"升级"];
+    alertView.didClick = didClick;
+    [[UIApplication sharedApplication].keyWindow addSubview:alertView];
+}
+
 + (void)showNoticeViewWithTitle:(NSString *)title didClick:(void(^)(NSUInteger index))didClick{
     DPAlertView *alertView = [[DPAlertView alloc]initWithLogoName:@"error" content:title cancelTitle:nil doneTitle:@"确定"];
     alertView.didClick = didClick;

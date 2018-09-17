@@ -15,11 +15,11 @@
 }
 
 - (NSString *)service{
-    NSDictionary *dic = @{@"首页":@"dp_home",@"控制面板":@"dp_template",@"设置":@"dp_set"};
+
     if(_web_url.length){
         return @"dp_web";
     }
-    _service = dic[_title];
+
     return _service;
 }
 
