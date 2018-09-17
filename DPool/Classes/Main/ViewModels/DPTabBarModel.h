@@ -36,4 +36,6 @@
  */
 @property (nonatomic, copy) NSString *web_url;
 
+@property (nonatomic, assign) BOOL is_need_login;
+
 @end

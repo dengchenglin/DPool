@@ -56,6 +56,10 @@
 		32AED4B321476FE200E0AAFD /* DPNetworkEngine+Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AED4B221476FE200E0AAFD /* DPNetworkEngine+Auth.m */; };
 		32AED4B9214772AF00E0AAFD /* KeychainTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AED4B7214772AE00E0AAFD /* KeychainTool.m */; };
 		32AED4BA214772AF00E0AAFD /* PassWordTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AED4B8214772AF00E0AAFD /* PassWordTool.m */; };
+		32BEFDA8214F52FC00027341 /* subaccount_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BEFDA6214F52FC00027341 /* subaccount_normal.png */; };
+		32BEFDA9214F52FC00027341 /* subaccount_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BEFDA7214F52FC00027341 /* subaccount_selected.png */; };
+		32BEFDAC214F5AF200027341 /* earning_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BEFDAA214F5AF100027341 /* earning_normal.png */; };
+		32BEFDAD214F5AF200027341 /* earning_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BEFDAB214F5AF200027341 /* earning_selected.png */; };
 		32C79C48214A544700BEAB2B /* vertical_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C79C47214A544700BEAB2B /* vertical_arrow.png */; };
 		32C79C4A214A545F00BEAB2B /* horizontal_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C79C49214A545F00BEAB2B /* horizontal_arrow.png */; };
 		32C79C52214A736D00BEAB2B /* DPChartSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C79C51214A736D00BEAB2B /* DPChartSelectView.m */; };
@@ -218,6 +222,10 @@
 		32AED4B6214772AE00E0AAFD /* KeychainTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainTool.h; sourceTree = "<group>"; };
 		32AED4B7214772AE00E0AAFD /* KeychainTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainTool.m; sourceTree = "<group>"; };
 		32AED4B8214772AF00E0AAFD /* PassWordTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassWordTool.m; sourceTree = "<group>"; };
+		32BEFDA6214F52FC00027341 /* subaccount_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subaccount_normal.png; sourceTree = "<group>"; };
+		32BEFDA7214F52FC00027341 /* subaccount_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subaccount_selected.png; sourceTree = "<group>"; };
+		32BEFDAA214F5AF100027341 /* earning_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = earning_normal.png; sourceTree = "<group>"; };
+		32BEFDAB214F5AF200027341 /* earning_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = earning_selected.png; sourceTree = "<group>"; };
 		32C79C47214A544700BEAB2B /* vertical_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vertical_arrow.png; sourceTree = "<group>"; };
 		32C79C49214A545F00BEAB2B /* horizontal_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horizontal_arrow.png; sourceTree = "<group>"; };
 		32C79C50214A736D00BEAB2B /* DPChartSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DPChartSelectView.h; sourceTree = "<group>"; };
@@ -452,6 +460,10 @@
 		32A79EAC2148CDCC00404F80 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				32BEFDAA214F5AF100027341 /* earning_normal.png */,
+				32BEFDAB214F5AF200027341 /* earning_selected.png */,
+				32BEFDA6214F52FC00027341 /* subaccount_normal.png */,
+				32BEFDA7214F52FC00027341 /* subaccount_selected.png */,
 				32A79EAF2148CDDB00404F80 /* template_selected.png */,
 				32A79EB02148CDDB00404F80 /* template_normal.png */,
 				32A79EB22148CDDC00404F80 /* set_normal.png */,
@@ -490,6 +502,20 @@
 				32AED4B8214772AF00E0AAFD /* PassWordTool.m */,
 			);
 			path = KeychainTool;
+			sourceTree = "<group>";
+		};
+		32BEFDA0214F52BB00027341 /* SubAccount */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SubAccount;
+			sourceTree = "<group>";
+		};
+		32BEFDA1214F52C800027341 /* Earning */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Earning;
 			sourceTree = "<group>";
 		};
 		32CBD39F2146180100091ECF = {
@@ -1134,6 +1160,8 @@
 		32CBD4CE214649DA00091ECF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				32BEFDA1214F52C800027341 /* Earning */,
+				32BEFDA0214F52BB00027341 /* SubAccount */,
 				32A79EDE214912EB00404F80 /* Template */,
 				32A79EAC2148CDCC00404F80 /* Main */,
 				328502482147B61F00F9B298 /* Set */,
@@ -1268,9 +1296,11 @@
 				32A79EB42148CDDC00404F80 /* home_normal.png in Resources */,
 				32A79EB72148CDDC00404F80 /* home_selected.png in Resources */,
 				3258A42B214B81AC005CE556 /* app_icon.png in Resources */,
+				32BEFDA9214F52FC00027341 /* subaccount_selected.png in Resources */,
 				328502522147B61F00F9B298 /* more_06.png in Resources */,
 				32A79EDA214905F000404F80 /* DPOremachineView.xib in Resources */,
 				32CBD505214666D500091ECF /* error.png in Resources */,
+				32BEFDA8214F52FC00027341 /* subaccount_normal.png in Resources */,
 				32CBD3B52146180200091ECF /* Assets.xcassets in Resources */,
 				32A79EB82148CDDC00404F80 /* set_normal.png in Resources */,
 				32A79EB62148CDDC00404F80 /* template_normal.png in Resources */,
@@ -1287,9 +1317,11 @@
 				32A79ECA2148F02C00404F80 /* DPTemplateAdressView.xib in Resources */,
 				36E1E9B721490763006EE199 /* Images.xcassets in Resources */,
 				32A79EB52148CDDC00404F80 /* template_selected.png in Resources */,
+				32BEFDAC214F5AF200027341 /* earning_normal.png in Resources */,
 				32C79C48214A544700BEAB2B /* vertical_arrow.png in Resources */,
 				3258E78C214A922200EB763C /* refresh@3x.png in Resources */,
 				328502402147B19600F9B298 /* DPAboutViewController.xib in Resources */,
+				32BEFDAD214F5AF200027341 /* earning_selected.png in Resources */,
 				3285023C2147A80D00F9B298 /* user.png in Resources */,
 				32A79EC62148EFC600404F80 /* DPImmediateView.xib in Resources */,
 				3258E78E214A922200EB763C /* refresh@2x.png in Resources */,

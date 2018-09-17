@@ -78,12 +78,12 @@ CL_EXPORT_MODULE(DPConfigServiceProtocol)
         NSNumber *is_use_html5 = data[@"is_use_html5"];
         NSString *web_url = data[@"web_url"];
         [[NSUserDefaults standardUserDefaults]setObject:is_use_html5 forKey:@"dp_use_html"];
-        [[NSUserDefaults standardUserDefaults]setObject:web_url forKey:@"dp_web_url"];
         UIViewController *rootVc = [UIApplication sharedApplication].keyWindow.rootViewController;
         if(is_use_html5.boolValue){
             if(![rootVc isKindOfClass:[DPWebViewController class]]){
                 [self configWebWindowWithUrl:web_url];
             }
+            [[NSUserDefaults standardUserDefaults]setObject:web_url forKey:@"dp_web_url"];
         }
         else{
             if(![rootVc isKindOfClass:[UITabBarController class]]){

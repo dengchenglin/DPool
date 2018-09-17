@@ -39,8 +39,9 @@
 - (NSArray *)tabbar_plist{
     NSArray *arr = [[NSArray alloc]initWithContentsOfFile:[self mainPath]];
     return arr?: @[@{@"unchecked":@"home_normal",@"selected":@"home_selected",@"name":@"首页",@"service":@"dp_home"},
-             @{@"unchecked":@"template_normal",@"selected":@"template_selected",@"name":@"控制面板",@"service":@"dp_template"},
-             @{@"unchecked":@"set_normal",@"selected":@"set_selected",@"name":@"设置",@"service":@"dp_set"}];
+                   @{@"unchecked":@"template_normal",@"selected":@"template_selected",@"name":@"控制面板",@"service":@"dp_template",@"is_need_login":@"1"},
+                   @{@"unchecked":@"earning_normal",@"selected":@"earning_selected",@"name":@"收益",@"service":@"dp_web",@"web_url":@"https://m-functest.qubtc.com/income",@"is_need_login":@"1"}, @{@"unchecked":@"set_normal",@"selected":@"set_selected",@"name":@"设置",@"service":@"dp_set"}];
+//    @{@"unchecked":@"subaccount_normal",@"selected":@"subaccount_selected",@"name":@"子账户",@"service":@"dp_web",@"web_url":@"https://m-functest.qubtc.com/subaccount",@"is_need_login":@"1"},
     
 }
 
@@ -99,7 +100,7 @@
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex{
-    if(selectedIndex == 1 && ![DPAppManager logined]){
+    if(self.tabbar_models[selectedIndex].is_need_login && ![DPAppManager logined]){
         [DPModuleManager showLoginFromViewController:self callback:^(BOOL result) {
             if(result){
                 [self super_selectedIndex:selectedIndex];
@@ -130,10 +131,12 @@
 
 - (void)request{
     [DPRequest tabbarInfoWithCallback:^(NSArray * data, DPNetError error, NSString *msg) {
-        self.tabbar_models = [DPTabBarModel yy_modelsWithDatas:data];
-         self.viewControllers = [self main_viewControllers];
-
-        [data writeToFile:[self mainPath] atomically:YES];
+        if(!error){
+            self.tabbar_models = [DPTabBarModel yy_modelsWithDatas:data];
+            [self setViewControllers:[self main_viewControllers]];
+            [self.view  setNeedsLayout];
+            [data writeToFile:[self mainPath] atomically:YES];
+        }
     }];
 }
 

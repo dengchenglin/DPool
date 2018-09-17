@@ -20,6 +20,8 @@
 
 @property (nonatomic, copy)NSString *n_url;
 
+@property (nonatomic, strong)UIButton *backBtn;
+
 @end
 
 @implementation DPWebViewController
@@ -45,6 +47,7 @@
 }
 
 - (void)setUpUI{
+    self.title = _s_title;
     _webView = [[UIWebView alloc]initWithFrame:self.view.bounds];
     _webView.delegate = self;
     _webView.scalesPageToFit = YES;
@@ -58,20 +61,15 @@
     if([_s_title isEqualToString:@"首页"]){
           [self setRightButtonWithImageName:@"user" imageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5) selector:@selector(login)];
     }
-    else{
-        UIButton *reloadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [reloadBtn setFrame:CGRectMake(0, 0, 30, 30)];
-        [reloadBtn setImage:[UIImage imageNamed:@"refresh"] forState:UIControlStateNormal];
-        reloadBtn.imageEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3 );
-        UIBarButtonItem *reloadItem = [[UIBarButtonItem alloc]initWithCustomView:reloadBtn];
-        self.navigationItem.rightBarButtonItem = reloadItem;
-        @weakify(self);
-        [reloadBtn touchUpInsideSubscribeNext:^(id x) {
-            @strongify(self);
-            [self.webView reload];
-        }];
-    }
-    @weakify(self)
+    
+    @weakify(self);
+    [_backBtn touchUpInsideSubscribeNext:^(id x) {
+        @strongify(self);
+        if([self.webView canGoBack]){
+            [self.webView goBack];
+        }
+    }];
+
     [self.webView.scrollView addHeaderRefreshWithCallBack:^{
         @strongify(self)
         [self request];
@@ -81,7 +79,7 @@
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:DP_NOTIFITION_LOGIN object:nil] subscribeNext:^(NSNotification * _Nullable x) {
         if([DPAppManager logined]){
             self.n_url = [self.url urlAddCompnentForValue:[DPAppManager sharedInstance].account key:@"account"];
-           
+            [self request];
         }
     }];
     
@@ -118,28 +116,21 @@
     
     JSContext *context = [_webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     //页面关闭
-    @weakify(self);
+
     context[@"dpShare"] = ^() {
+        NSArray *args = [JSContext currentArguments];
+        JSValue *jsVal = [args objectAtIndex:0];
+        NSString *jsStr = [jsVal toString];
+        NSDictionary *shareData = [jsStr jsonValueDecoded];
         dispatch_async(dispatch_get_main_queue(), ^{
-            @strongify(self);
-            NSArray *args = [JSContext currentArguments];
-            JSValue *jsVal = [args objectAtIndex:0];
-            NSString *jsStr = [jsVal toString];
-            NSDictionary *shareData = [jsStr jsonValueDecoded];
-            dispatch_async(dispatch_get_main_queue(), ^{
-               [[DPModuleServiceManager configService] shareInfo:shareData];
-            });
-            
+            [[DPModuleServiceManager configService] shareInfo:shareData];
         });
+        
     };
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self.webView.scrollView endRefreshing];
 }
-
-
-
-
 
 @end
