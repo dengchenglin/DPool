@@ -22,14 +22,17 @@
 
 @property (nonatomic, strong)UIButton *backBtn;
 
+@property (nonatomic, assign)BOOL needRefresh;
+
 @end
 
 @implementation DPWebViewController
 
-+ (UIViewController *_Nullable)webViewControllerWithUrl:(NSString *_Nullable)url title:(NSString *_Nullable)title{
++ (UIViewController *_Nullable)webViewControllerWithUrl:(NSString *_Nullable)url title:(NSString *_Nullable)title needRefresh:(BOOL)needRefresh{
     DPWebViewController *vc = [DPWebViewController new];
     vc.url = url;
     vc.s_title = title;
+    vc.needRefresh = needRefresh;
     return vc;
 }
 
@@ -44,6 +47,15 @@
         DBLog(@"web usl is ---- %@\n\n",vc.url);
     });
 
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _needRefresh = YES;
+    }
+    return self;
 }
 
 - (void)setUpUI{
@@ -70,10 +82,13 @@
         }
     }];
 
-    [self.webView.scrollView addHeaderRefreshWithCallBack:^{
-        @strongify(self)
-        [self request];
-    }];
+    if(_needRefresh){
+        [self.webView.scrollView addHeaderRefreshWithCallBack:^{
+            @strongify(self)
+            [self request];
+        }];
+    }
+
 
     self.n_url = [self.url urlAddCompnentForValue:[DPUserManager sharedInstance].cuid key:@"cuid"];
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:DP_NOTIFITION_LOGIN object:nil] subscribeNext:^(NSNotification * _Nullable x) {

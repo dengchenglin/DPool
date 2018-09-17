@@ -20,6 +20,8 @@
 
 #import "DPWebViewController.h"
 
+#import "AFNetworkReachabilityManager.h"
+
 @implementation DPConfigService
 
 CL_EXPORT_MODULE(DPConfigServiceProtocol)
@@ -36,6 +38,8 @@ CL_EXPORT_MODULE(DPConfigServiceProtocol)
     
     
     [UMShareManager config];
+    
+    [self listeningNetwork];
  
 }
 
@@ -65,7 +69,6 @@ CL_EXPORT_MODULE(DPConfigServiceProtocol)
 
 
 + (void)configKeyWindow{
-
     NSNumber *is_use_html5 = [[NSUserDefaults standardUserDefaults]objectForKey:@"dp_use_html"];
     NSString *web_url = [[NSUserDefaults standardUserDefaults]objectForKey:@"dp_web_url"];
     if(is_use_html5.boolValue){
@@ -74,6 +77,7 @@ CL_EXPORT_MODULE(DPConfigServiceProtocol)
     else{
         [self configMainWindow];
     }
+    
     [DPRequest switchInfoWithCallback:^(id data, DPNetError error, NSString *msg) {
         NSNumber *is_use_html5 = data[@"is_use_html5"];
         NSString *web_url = data[@"web_url"];
@@ -95,11 +99,26 @@ CL_EXPORT_MODULE(DPConfigServiceProtocol)
 
 + (void)configWebWindowWithUrl:(NSString *)url{
     Class<DPWebServiceProtocol> webService = ( Class<DPWebServiceProtocol>)[DPModuleServiceManager serviceForStr:@"dp_web"];
-    UIViewController *rootVc = [webService webViewControllerWithUrl:url title:nil];
+    UIViewController *rootVc = [webService webViewControllerWithUrl:url title:nil needRefresh:NO];
     [UIApplication sharedApplication].keyWindow.rootViewController = rootVc;
 }
 + (void)configMainWindow{
     [UIApplication sharedApplication].keyWindow.rootViewController = [[DPModuleServiceManager mainService] rootViewController];
+}
+
++ (void)listeningNetwork
+{
+    AFNetworkReachabilityManager *reachabiltyManager = [AFNetworkReachabilityManager sharedManager];
+    
+    [[AFNetworkReachabilityManager sharedManager]setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if(status == AFNetworkReachabilityStatusReachableViaWiFi || status == AFNetworkReachabilityStatusReachableViaWWAN)
+        {
+            [self configKeyWindow];
+        }
+
+    }];
+    [reachabiltyManager startMonitoring];
+    
 }
 
 @end

@@ -14,7 +14,7 @@
 
 @property (nonatomic, copy) NSString *s_title;
 
-+ (UIViewController *_Nullable)webViewControllerWithUrl:(NSString *_Nullable)url title:(NSString *_Nullable)title;;
++ (UIViewController *_Nullable)webViewControllerWithUrl:(NSString *_Nullable)url title:(NSString *_Nullable)title needRefresh:(BOOL)needRefresh;
 
 + (void)showWebFromViewController:(UIViewController * _Nonnull)viewController url:(NSString * _Nonnull)url;
 

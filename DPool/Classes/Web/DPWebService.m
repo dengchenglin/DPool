@@ -17,7 +17,11 @@
 CL_EXPORT_MODULE(DPWebServiceProtocol)
 
 + (UIViewController *_Nullable)webViewControllerWithUrl:(NSString *_Nullable)url title:(NSString *_Nullable)title{
-    return [DPWebViewController webViewControllerWithUrl:url title:title];
+    return [self webViewControllerWithUrl:url title:title needRefresh:YES];
+}
+
++ (UIViewController *_Nullable)webViewControllerWithUrl:(NSString *_Nullable)url title:(NSString *_Nullable)title needRefresh:(BOOL)needRefresh{
+    return [DPWebViewController webViewControllerWithUrl:url title:title needRefresh:needRefresh];
 }
 
 + (void)showWebFromViewController:(UIViewController * _Nonnull)viewController url:(NSString * _Nonnull)url{
