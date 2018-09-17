@@ -12,7 +12,7 @@
 
 + (void)clearWebCaches{
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    [self removeApplicationLibraryDirectoryWithDirectory:@"Caches"];
+
     [self removeApplicationLibraryDirectoryWithDirectory:@"WebKit"];
     // Empty the cookie jar...
     for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {

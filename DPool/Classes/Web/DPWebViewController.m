@@ -14,6 +14,8 @@
 
 #import "NSTimer+YYAdd.h"
 
+#import "FileUtil.h"
+
 @interface DPWebViewController ()<UIWebViewDelegate>
 
 @property (nonatomic, strong)UIWebView *webView;
@@ -89,11 +91,13 @@
         }];
     }
 
+    NSString *new_url = [[self.url urlAddCompnentForValue:[DPUserManager sharedInstance].cuid key:@"cuid"] urlAddCompnentForValue:[DPAppManager sharedInstance].email key:@"account"];
+    self.n_url = new_url;
 
-    self.n_url = [self.url urlAddCompnentForValue:[DPUserManager sharedInstance].cuid key:@"cuid"];
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:DP_NOTIFITION_LOGIN object:nil] subscribeNext:^(NSNotification * _Nullable x) {
         if([DPAppManager logined]){
-            self.n_url = [self.url urlAddCompnentForValue:[DPAppManager sharedInstance].email key:@"account"];
+             NSString *new_url = [[self.url urlAddCompnentForValue:[DPUserManager sharedInstance].cuid key:@"cuid"] urlAddCompnentForValue:[DPAppManager sharedInstance].email key:@"account"];
+            self.n_url = new_url;
             [self request];
         }
     }];
@@ -107,10 +111,11 @@
 - (void)request{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [NSTimer scheduledTimerWithTimeInterval:0.2 block:^(NSTimer *timer) {
-        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.n_url]]];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.needRefresh?self.n_url:self.url]]];
     } repeats:NO];
 
 }
+
 
 - (void)back{
     if([self.webView canGoBack]){
